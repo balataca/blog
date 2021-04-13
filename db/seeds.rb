@@ -17,8 +17,8 @@ images = [
 # Articles
 images.each do |image|
   article = Article.create(
-    title: Faker::Name.name,
-    body: Faker::Lorem.paragraph(sentence_count: 2)
+    title: Faker::Lorem.paragraph(sentence_count: 5),
+    body: Faker::Lorem.paragraph(sentence_count: 30)
   )
   filename = File.basename(URI.parse(image).path)
   file = URI.open(image)
