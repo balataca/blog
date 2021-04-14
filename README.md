@@ -1,24 +1,56 @@
-# README
+# Watches Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A blog of watches with local and remote posts.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+### Install Rails dependencies
+```
+bundle install
+```
 
-* System dependencies
+### Install Javascript dependencies
+```
+yarn install
+```
 
-* Configuration
+### Create database and run migrations
+```
+rails db:create
+rails db:migrate
+```
 
-* Database creation
+### Seed the database with fake data
+```
+rails db:seed
+```
 
-* Database initialization
+### Add your newsapi.org key
 
-* How to run the test suite
+Open the api service file `app/javascript/services/api.js` and edit the line NEWS_API_KEY with your api key:
+```
+const NEWS_API_KEY = 'YOUR_API_KEY';
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Usage
 
-* Deployment instructions
+### Run a development local server
+```
+rails s
+```
 
-* ...
+### Run linter and fix errors
+```
+yarn lint
+```
+
+### Articles CRUD
+Click on "Manager" on the navbar.
+
+There you can:
+1. Add new articles.
+2. Edit existing articles.
+3. Delete articles.
+
+### View an article in detail
+In the articles list just click on any article.
