@@ -18,7 +18,7 @@ const apiGetRemoteArticles = async () => {
   }));
 };
 
-const apiGetLocalArticles = async () => {
+export const apiGetLocalArticles = async () => {
   const response = await fetch('/api/v1/articles/index');
 
   return response.json();
@@ -36,6 +36,18 @@ export const apiGetArticles = async () => {
 
 export const apiGetArticle = async (id) => {
   const response = await fetch(`/api/v1/articles/${id}`);
+
+  return response.json();
+};
+
+export const apiDeleteArticle = async (token, id) => {
+  const response = await fetch(`/api/v1/articles/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'X-CSRF-Token': token,
+      'Content-Type': 'application/json',
+    },
+  });
 
   return response.json();
 };
