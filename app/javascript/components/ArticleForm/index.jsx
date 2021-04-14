@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { apiCreateArticle } from '../../services/api';
+import { apiCreateArticle, apiUpdateArticle } from '../../services/api';
 import Button from '../Button';
 
 import {
   Container,
-  Title,
   Form,
   InputBlock,
   Label,
@@ -14,12 +14,13 @@ import {
   TextArea,
 } from './styles';
 
-const ArticleForm = () => {
+const ArticleForm = ({ article }) => {
   const history = useHistory();
+  const createOrUpdate = article.id ? apiUpdateArticle : apiCreateArticle;
   const [state, setState] = useState({
-    title: '',
-    subtitle: '',
-    body: '',
+    title: article.title,
+    subtitle: article.subtitle,
+    body: article.body,
     image: '',
   });
 
@@ -52,7 +53,7 @@ const ArticleForm = () => {
     e.preventDefault();
     const formData = createFormData();
     const token = document.querySelector('meta[name="csrf-token"]').content;
-    const response = await apiCreateArticle(token, formData);
+    const response = await createOrUpdate({ token, id: article.id, formData });
 
     if (response) {
       history.push('/manage');
@@ -61,7 +62,6 @@ const ArticleForm = () => {
 
   return (
     <Container>
-      <Title>New Article</Title>
       <Form onSubmit={onSubmit}>
         <InputBlock>
           <Label htmlFor="title">
@@ -82,6 +82,7 @@ const ArticleForm = () => {
           <Input
             name="subtitle"
             id="subtitle"
+            required
             value={state.subtitle}
             onChange={onChange}
           />
@@ -93,6 +94,7 @@ const ArticleForm = () => {
           <TextArea
             name="body"
             id="body"
+            required
             value={state.body}
             onChange={onChange}
             rows="5"
@@ -117,6 +119,27 @@ const ArticleForm = () => {
       </Form>
     </Container>
   );
+};
+
+ArticleForm.propTypes = {
+  article: PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    body: PropTypes.string,
+  }),
+};
+
+ArticleForm.defaultProps = {
+  article: {
+    id: '',
+    title: '',
+    subtitle: '',
+    body: '',
+  },
 };
 
 export default ArticleForm;

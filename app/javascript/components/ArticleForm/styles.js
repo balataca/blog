@@ -4,10 +4,6 @@ export const Container = styled.div`
   padding: 0 10em;
 `;
 
-export const Title = styled.h1`
-  font-size: 1.2em;
-`;
-
 export const Form = styled.form`
   margin-top: 30px;
 `;
