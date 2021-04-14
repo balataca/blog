@@ -6,9 +6,13 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.create!(article_params)
+    article = Article.new(article_params)
 
-    if article
+    if params[:image]
+      article.image.attach(params[:image])
+    end
+
+    if article.save
       render json: article
     else
       render json: article.errors
