@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiGetArticles } from '../../services/api';
 
-const Home = () => {
+const Articles = () => {
   const [articles, setArticles] = useState([]);
 
   const getArticles = async () => {
@@ -26,4 +26,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Articles;
