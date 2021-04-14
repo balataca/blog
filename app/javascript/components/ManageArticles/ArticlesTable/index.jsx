@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { apiGetLocalArticles, apiDeleteArticle } from '../../../services/api';
 import {
   Table,
   TableHeadCell,
   TableCell,
   DeleteButton,
+  EditButton,
+  Actions,
 } from './styles';
 
 const ArticlesTable = () => {
+  const history = useHistory();
   const [articles, setArticles] = useState([]);
 
   const getArticles = async () => {
@@ -35,6 +39,10 @@ const ArticlesTable = () => {
     }
   };
 
+  const editArticle = async (id) => {
+    history.push(`/article/edit/${id}`);
+  };
+
   return (
     <Table>
       <thead>
@@ -52,11 +60,18 @@ const ArticlesTable = () => {
             <TableCell>{article.subtitle}</TableCell>
             <TableCell>{article.created_at}</TableCell>
             <TableCell>
-              <DeleteButton
-                onClick={() => deleteArticle(article.id)}
-              >
-                Delete
-              </DeleteButton>
+              <Actions>
+                <EditButton
+                  onClick={() => editArticle(article.id)}
+                >
+                  Edit
+                </EditButton>
+                <DeleteButton
+                  onClick={() => deleteArticle(article.id)}
+                >
+                  Delete
+                </DeleteButton>
+              </Actions>
             </TableCell>
           </tr>
         ))}
