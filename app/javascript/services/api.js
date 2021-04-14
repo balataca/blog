@@ -4,6 +4,8 @@ export const apiGetArticles = async () => {
   return response.json();
 };
 
-export default {
-  apiGetArticles,
+export const apiGetArticle = async (id) => {
+  const response = await fetch(`/api/v1/articles/${id}`);
+
+  return response.json();
 };
