@@ -2,9 +2,7 @@ class Api::V1::ArticlesController < ApplicationController
   def index
     articles = Article.all.order(created_at: :desc).with_attached_image
     
-    render json: articles.map { |article|
-      article.as_json.merge({ image: rails_blob_path(article.image, only_path: true) })
-    }
+    render json: articles
   end
 
   def create
