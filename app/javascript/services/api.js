@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-const NEWS_API_KEY = 'YOUR_API_KEY';
+const NEWS_API_KEY = 'f92b8b2cb6594951a36ffb22f19800b6';
 
 const apiGetRemoteArticles = async () => {
   const response = await fetch(`https://newsapi.org/v2/everything?q=watches&from=2021-03-14&sortBy=publishedAt&apiKey=${NEWS_API_KEY}`);
@@ -52,9 +52,22 @@ export const apiDeleteArticle = async (token, id) => {
   return response.json();
 };
 
-export const apiCreateArticle = async (token, formData) => {
+export const apiCreateArticle = async ({ token, formData }) => {
   const response = await fetch('/api/v1/articles/create', {
     method: 'POST',
+    headers: {
+      'X-CSRF-Token': token,
+      Accept: 'application/json',
+    },
+    body: formData,
+  });
+
+  return response.json();
+};
+
+export const apiUpdateArticle = async ({ token, id, formData }) => {
+  const response = await fetch(`/api/v1/articles/${id}`, {
+    method: 'PATCH',
     headers: {
       'X-CSRF-Token': token,
       Accept: 'application/json',
