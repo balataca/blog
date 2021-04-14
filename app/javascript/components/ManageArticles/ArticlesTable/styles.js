@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from '../../Button';
 
 export const Table = styled.table`
   width: 100%;
@@ -33,19 +32,4 @@ export const TableHeadCell = styled.th`
   font-weight: normal;
   font-size: 1.1rem;
   color: white;
-`;
-
-export const DeleteButton = styled(Button)`
-  background-color: #ff3d00;
-  border-color: #b2102f;
-`;
-
-export const EditButton = styled(Button)`
-  background-color: #9c27b0;
-  border-color: #6d1b7b;
-  margin-right: 0.5em;
-`;
-
-export const Actions = styled.div`
-  display: flex;
 `;

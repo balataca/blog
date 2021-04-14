@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { apiGetLocalArticles, apiDeleteArticle } from '../../../services/api';
+import { apiGetLocalArticles } from '../../../services/api';
+import Actions from './Actions';
+
 import {
   Table,
   TableHeadCell,
   TableCell,
-  DeleteButton,
-  EditButton,
-  Actions,
 } from './styles';
 
 const ArticlesTable = () => {
-  const history = useHistory();
   const [articles, setArticles] = useState([]);
 
   const getArticles = async () => {
@@ -27,20 +24,6 @@ const ArticlesTable = () => {
     const filteredArticles = articles.filter((article) => article.id !== id);
 
     setArticles(filteredArticles);
-  };
-
-  const deleteArticle = async (id) => {
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-
-    const response = await apiDeleteArticle(token, id);
-
-    if (response.message) {
-      removeArticle(id);
-    }
-  };
-
-  const editArticle = async (id) => {
-    history.push(`/article/edit/${id}`);
   };
 
   return (
@@ -60,18 +43,7 @@ const ArticlesTable = () => {
             <TableCell>{article.subtitle}</TableCell>
             <TableCell>{article.created_at}</TableCell>
             <TableCell>
-              <Actions>
-                <EditButton
-                  onClick={() => editArticle(article.id)}
-                >
-                  Edit
-                </EditButton>
-                <DeleteButton
-                  onClick={() => deleteArticle(article.id)}
-                >
-                  Delete
-                </DeleteButton>
-              </Actions>
+              <Actions id={article.id} removeArticle={removeArticle} />
             </TableCell>
           </tr>
         ))}
