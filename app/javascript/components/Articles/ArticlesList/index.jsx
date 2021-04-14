@@ -19,7 +19,7 @@ ArticlesList.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
+    image_url: PropTypes.string,
     created_at: PropTypes.string.isRequired,
     url: PropTypes.string,
   })).isRequired,
