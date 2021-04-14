@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import LocaleDate from '../../LocaleDate';
 
 import {
   Container,
   Header,
   Title,
+  Subtitle,
   Image,
 } from './styles';
 
@@ -21,6 +22,7 @@ const ArticleItem = ({ article }) => {
     <Container onClick={openArticle}>
       <Header>
         <Title>{article.title}</Title>
+        <Subtitle>{article.subtitle}</Subtitle>
         <LocaleDate date={article.created_at} />
       </Header>
       <Image src={article.image_url} aria-label="wristwatch" />
@@ -32,6 +34,7 @@ ArticleItem.propTypes = {
   article: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,

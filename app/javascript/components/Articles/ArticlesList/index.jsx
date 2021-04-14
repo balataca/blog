@@ -14,6 +14,7 @@ ArticlesList.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,

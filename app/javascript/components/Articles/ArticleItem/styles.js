@@ -13,9 +13,14 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
-  margin-bottom: 1em;
   font-size: 1.5em;
   line-height: 1.2em;
+`;
+
+export const Subtitle = styled.div`
+  margin: 0.5em 0 1.5em 0;
+  font-size: 1.5em;
+  color: #616161;
 `;
 
 export const Image = styled.div`
