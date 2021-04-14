@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
   position: sticky;
@@ -27,11 +26,5 @@ export const Links = styled.div`
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-  }
-`;
-
-export const Link = styled(NavLink)`
-  &.active {
-    border-bottom: .15em solid #fff;
   }
 `;

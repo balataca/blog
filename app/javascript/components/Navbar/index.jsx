@@ -1,10 +1,10 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import {
   Nav,
   Logo,
   Links,
-  Link,
 } from './styles';
 
 const Navbar = () => (
@@ -13,7 +13,8 @@ const Navbar = () => (
       Watches
     </Logo>
     <Links>
-      <Link to="/">Articles</Link>
+      <NavLink to="/">Articles</NavLink>
+      <NavLink to="/manage">Manage</NavLink>
     </Links>
   </Nav>
 );
