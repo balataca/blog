@@ -15,7 +15,11 @@ const ArticleItem = ({ article }) => {
   const history = useHistory();
 
   const openArticle = () => {
-    history.push(`/articles/${article.id}`);
+    if (article.url) {
+      window.location.href = article.url;
+    } else {
+      history.push(`/articles/${article.id}`);
+    }
   };
 
   return (
@@ -32,12 +36,16 @@ const ArticleItem = ({ article }) => {
 
 ArticleItem.propTypes = {
   article: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
     created_at: PropTypes.string.isRequired,
+    url: PropTypes.string,
   }).isRequired,
 };
 
