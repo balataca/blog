@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import {
   Nav,
   Logo,
   Links,
+  Link,
 } from './styles';
 
 const Navbar = () => (
   <Nav>
     <Logo>
-      Blog
+      Watches
     </Logo>
     <Links>
       <Link to="/">Articles</Link>
