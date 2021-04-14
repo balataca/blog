@@ -51,3 +51,16 @@ export const apiDeleteArticle = async (token, id) => {
 
   return response.json();
 };
+
+export const apiCreateArticle = async (token, formData) => {
+  const response = await fetch('/api/v1/articles/create', {
+    method: 'POST',
+    headers: {
+      'X-CSRF-Token': token,
+      Accept: 'application/json',
+    },
+    body: formData,
+  });
+
+  return response.json();
+};
