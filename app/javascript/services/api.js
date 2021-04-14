@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-const NEWS_API_KEY = 'f92b8b2cb6594951a36ffb22f19800b6';
+const NEWS_API_KEY = 'YOUR_API_KEY';
 
 const apiGetRemoteArticles = async () => {
   const response = await fetch(`https://newsapi.org/v2/everything?q=watches&from=2021-03-14&sortBy=publishedAt&apiKey=${NEWS_API_KEY}`);
